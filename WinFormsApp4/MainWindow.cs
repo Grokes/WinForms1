@@ -12,21 +12,21 @@ namespace WinFormsApp4
 {
     public partial class MainWindow : Form
     {
-        static List<Product> products1 = new List<Product>()
+        static BindingList<Product> products1 = new BindingList<Product>()
         {
             new Product() {Id = 1, Name = "Apple"},
             new Product() {Id = 2, Name = "Tomato"},
             new Product() {Id = 3, Name = "Juice"}
         };
 
-        static List<Product> products2 = new List<Product>()
+        static BindingList<Product> products2 = new BindingList<Product>()
         {
             new Product() {Id = 4, Name = "Potato"},
             new Product() {Id = 5, Name = "Orange"},
             new Product() {Id = 6, Name = "Meat"}
         };
 
-        List<Shop> shops = new List<Shop>()
+        BindingList<Shop> shops = new BindingList<Shop>()
         {
             new Shop()
             {
@@ -60,7 +60,7 @@ namespace WinFormsApp4
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var shop = shops.Where(x => x.Id == ((Shop)ShopsListBox.SelectedItem).Id).FirstOrDefault();
-            if(shop != null) 
+            if (shop != null)
             {
                 ProductsListBox.DataSource = shop.Products;
                 ProductsListBox.DisplayMember = "Name";
@@ -73,6 +73,22 @@ namespace WinFormsApp4
         {
             //Something
         }
+
+        private void CreateShopButton_Click(object sender, EventArgs e)
+        {
+            var shopName = NameShopTextBox.Text;
+            var shopId = shops.Count() + 1;
+            shops.Add(new Shop() { Name = shopName, Id = shopId, Products = new BindingList<Product>() });
+            NameShopTextBox.Text = "";
+        }
+
+        private void CreateProductButton_Click(object sender, EventArgs e)
+        {
+            var ProductName = NameProductTextBox.Text;
+            var ProductId = shops.Sum(x => x.Products.Count()) + 1;
+            ((Shop)ShopsListBox.SelectedItem).Products.Add(new Product {Name = ProductName, Id = ProductId });
+            NameProductTextBox.Text = "";
+        }
     }
 
     public class Shop
@@ -80,7 +96,7 @@ namespace WinFormsApp4
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public List<Product> Products { get; set; }
+        public BindingList<Product> Products { get; set; }
     }
 
     public class Product

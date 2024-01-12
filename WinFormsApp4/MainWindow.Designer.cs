@@ -30,43 +30,93 @@
         {
             ShopsListBox = new ListBox();
             ProductsListBox = new ListBox();
+            CreateShopButton = new Button();
+            NameShopTextBox = new TextBox();
+            NameProductTextBox = new TextBox();
+            CreateProductButton = new Button();
             SuspendLayout();
             // 
             // ShopsListBox
             // 
             ShopsListBox.FormattingEnabled = true;
-            ShopsListBox.ItemHeight = 15;
-            ShopsListBox.Location = new Point(26, 12);
+            ShopsListBox.ItemHeight = 20;
+            ShopsListBox.Location = new Point(30, 16);
+            ShopsListBox.Margin = new Padding(3, 4, 3, 4);
             ShopsListBox.Name = "ShopsListBox";
-            ShopsListBox.Size = new Size(166, 364);
+            ShopsListBox.Size = new Size(189, 484);
             ShopsListBox.TabIndex = 0;
             ShopsListBox.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // ProductsListBox
             // 
             ProductsListBox.FormattingEnabled = true;
-            ProductsListBox.ItemHeight = 15;
-            ProductsListBox.Location = new Point(292, 12);
+            ProductsListBox.ItemHeight = 20;
+            ProductsListBox.Location = new Point(334, 16);
+            ProductsListBox.Margin = new Padding(3, 4, 3, 4);
             ProductsListBox.Name = "ProductsListBox";
-            ProductsListBox.Size = new Size(166, 364);
+            ProductsListBox.Size = new Size(189, 484);
             ProductsListBox.TabIndex = 1;
             ProductsListBox.SelectedIndexChanged += Products_SelectedIndexChanged;
             // 
+            // CreateShopButton
+            // 
+            CreateShopButton.Location = new Point(39, 536);
+            CreateShopButton.Name = "CreateShopButton";
+            CreateShopButton.Size = new Size(180, 52);
+            CreateShopButton.TabIndex = 2;
+            CreateShopButton.Text = "Add Shop";
+            CreateShopButton.UseVisualStyleBackColor = true;
+            CreateShopButton.Click += CreateShopButton_Click;
+            // 
+            // NameShopTextBox
+            // 
+            NameShopTextBox.Location = new Point(5, 503);
+            NameShopTextBox.Name = "NameShopTextBox";
+            NameShopTextBox.Size = new Size(245, 27);
+            NameShopTextBox.TabIndex = 3;
+            // 
+            // NameProductTextBox
+            // 
+            NameProductTextBox.Location = new Point(309, 503);
+            NameProductTextBox.Name = "NameProductTextBox";
+            NameProductTextBox.Size = new Size(245, 27);
+            NameProductTextBox.TabIndex = 5;
+            // 
+            // CreateProductButton
+            // 
+            CreateProductButton.Location = new Point(343, 536);
+            CreateProductButton.Name = "CreateProductButton";
+            CreateProductButton.Size = new Size(180, 52);
+            CreateProductButton.TabIndex = 4;
+            CreateProductButton.Text = "Add Product";
+            CreateProductButton.UseVisualStyleBackColor = true;
+            CreateProductButton.Click += CreateProductButton_Click;
+            // 
             // MainWindow
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            Controls.Add(NameProductTextBox);
+            Controls.Add(CreateProductButton);
+            Controls.Add(NameShopTextBox);
+            Controls.Add(CreateShopButton);
             Controls.Add(ProductsListBox);
             Controls.Add(ShopsListBox);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainWindow";
             Text = "MainWindow";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private ListBox ShopsListBox;
         private ListBox ProductsListBox;
+        private Button CreateShopButton;
+        private TextBox NameShopTextBox;
+        private TextBox NameProductTextBox;
+        private Button CreateProductButton;
     }
 }
