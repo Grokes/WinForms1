@@ -71,7 +71,7 @@ namespace WinFormsApp4
 
         private void Products_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //Something
         }
     }
 
