@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace WinFormsApp4
 {
-    public class User
+    public interface IUserRepository
     {
-        public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        List<User> GetUsers();
+        void Create(User user);
     }
 }

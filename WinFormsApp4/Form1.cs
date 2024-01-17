@@ -1,9 +1,11 @@
 namespace WinFormsApp4
 {
-    public partial class Form1 : Form
+    public partial class AuthorizeForm : Form
     {
-        public Form1()
+        private readonly IUserRepository _userRepository;
+        public AuthorizeForm()
         {
+            _userRepository = new UserRepository("Data Source=LAPTOP-J6B0K8DE;Initial Catalog=WinForms;Persist Security Info=True;User ID=sa;Password=admin;TrustServerCertificate=True");
             InitializeComponent();
         }
 
@@ -17,19 +19,25 @@ namespace WinFormsApp4
             var login = LoginTextBox.Text;
             var password = PasswordTextBox.Text;
 
-            if(UserRepository.Users.Where(u => u.Login == login && u.Password == password).FirstOrDefault() == null )
+            if (_userRepository.GetUsers().Where(u => u.Login == login && u.Password == password).FirstOrDefault() == null)
             {
                 MessageBox.Show("Вы ввели некоректные данные", "Не найден пользователь", MessageBoxButtons.OK);
                 return;
             }
+
             MessageBox.Show("Вы ввели коректные данные", "Найден пользователь", MessageBoxButtons.OK);
 
             var mainWindow = new MainWindow();
             mainWindow.Show();
-            this.Hide(); 
+            this.Hide();
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
         }
