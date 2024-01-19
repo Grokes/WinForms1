@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp4
 {
-    partial class AuthorizeForm
+    partial class RegistrationForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Authorize_button = new Button();
+            Register_button = new Button();
             LoginTextBox = new TextBox();
             LoginLabel = new Label();
             PasswordTextBox = new TextBox();
             PasswordLabel = new Label();
-            label_login = new Label();
+            label_registration = new Label();
             linkLabel_createAccount = new LinkLabel();
             SuspendLayout();
             // 
-            // Authorize_button
+            // Register_button
             // 
-            Authorize_button.Location = new Point(232, 335);
-            Authorize_button.Margin = new Padding(3, 4, 3, 4);
-            Authorize_button.Name = "Authorize_button";
-            Authorize_button.Size = new Size(338, 40);
-            Authorize_button.TabIndex = 5;
-            Authorize_button.Text = "Авторизоваться";
-            Authorize_button.UseVisualStyleBackColor = true;
-            Authorize_button.Click += Authorize_Click;
+            Register_button.Location = new Point(232, 335);
+            Register_button.Margin = new Padding(3, 4, 3, 4);
+            Register_button.Name = "Register_button";
+            Register_button.Size = new Size(338, 40);
+            Register_button.TabIndex = 5;
+            Register_button.Text = "Зарегистрироваться";
+            Register_button.UseVisualStyleBackColor = true;
+            Register_button.Click += Registration_Click;
             // 
             // LoginTextBox
             // 
@@ -84,55 +84,54 @@
             PasswordLabel.Text = "Пароль";
             PasswordLabel.Click += label2_Click;
             // 
-            // label_login
+            // label_registration
             // 
-            label_login.AutoSize = true;
-            label_login.Font = new Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point);
-            label_login.Location = new Point(323, 75);
-            label_login.Name = "label_login";
-            label_login.Size = new Size(151, 67);
-            label_login.TabIndex = 0;
-            label_login.Text = "Вход";
+            label_registration.AutoSize = true;
+            label_registration.Font = new Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point);
+            label_registration.Location = new Point(235, 65);
+            label_registration.Name = "label_registration";
+            label_registration.Size = new Size(335, 67);
+            label_registration.TabIndex = 0;
+            label_registration.Text = "Регистрация";
             // 
             // linkLabel_createAccount
             // 
             linkLabel_createAccount.AutoSize = true;
-            linkLabel_createAccount.Location = new Point(339, 391);
+            linkLabel_createAccount.Location = new Point(316, 391);
             linkLabel_createAccount.Name = "linkLabel_createAccount";
-            linkLabel_createAccount.Size = new Size(120, 20);
+            linkLabel_createAccount.Size = new Size(147, 20);
             linkLabel_createAccount.TabIndex = 6;
             linkLabel_createAccount.TabStop = true;
-            linkLabel_createAccount.Text = "Создать аккаунт";
+            linkLabel_createAccount.Text = "Есть аккаунт? Войти";
             linkLabel_createAccount.LinkClicked += linkLabel1_LinkClicked;
             // 
-            // AuthorizeForm
+            // RegistrationForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(782, 553);
             Controls.Add(linkLabel_createAccount);
-            Controls.Add(label_login);
+            Controls.Add(label_registration);
             Controls.Add(PasswordLabel);
             Controls.Add(PasswordTextBox);
             Controls.Add(LoginLabel);
             Controls.Add(LoginTextBox);
-            Controls.Add(Authorize_button);
+            Controls.Add(Register_button);
             Margin = new Padding(3, 4, 3, 4);
             MinimumSize = new Size(800, 600);
-            Name = "AuthorizeForm";
+            Name = "RegistrationForm";
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
         }
-
         #endregion
 
-        private Button Authorize_button;
+        private Button Register_button;
         private TextBox LoginTextBox;
         private Label LoginLabel;
         private TextBox PasswordTextBox;
         private Label PasswordLabel;
-        private Label label_login;
+        private Label label_registration;
         private LinkLabel linkLabel_createAccount;
     }
 }

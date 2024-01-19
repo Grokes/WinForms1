@@ -37,9 +37,11 @@ namespace WinFormsApp4
 
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel_createAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            this.Hide();
+            var regForm = new RegistrationForm();
+            regForm.Show();
         }
     }
 }
