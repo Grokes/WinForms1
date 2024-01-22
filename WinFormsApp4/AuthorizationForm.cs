@@ -3,9 +3,13 @@ namespace WinFormsApp4
     public partial class AuthorizeForm : Form
     {
         private readonly IUserRepository _userRepository;
-        public AuthorizeForm()
+        private readonly RegistrationForm _registrationForm;
+        private readonly MainWindow _mainWindow;
+        public AuthorizeForm(MainWindow mainWindow, RegistrationForm registrationForm, IUserRepository userRepository)
         {
-            _userRepository = new UserRepository("Data Source=LAPTOP-J6B0K8DE;Initial Catalog=WinForms;Persist Security Info=True;User ID=sa;Password=admin;TrustServerCertificate=True");
+            _userRepository = userRepository;
+            _registrationForm = registrationForm;
+            _mainWindow = mainWindow;
             InitializeComponent();
         }
 
@@ -27,9 +31,8 @@ namespace WinFormsApp4
 
             MessageBox.Show("Вы ввели коректные данные", "Найден пользователь", MessageBoxButtons.OK);
 
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
             this.Hide();
+            _mainWindow.Show();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -40,8 +43,7 @@ namespace WinFormsApp4
         private void linkLabel_createAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            var regForm = new RegistrationForm();
-            regForm.Show();
+            _registrationForm.Show();
         }
     }
 }

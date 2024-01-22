@@ -13,9 +13,13 @@ namespace WinFormsApp4
     public partial class RegistrationForm : Form
     {
         private readonly IUserRepository _userRepository;
-        public RegistrationForm()
+        private readonly AuthorizeForm _authorizeForm;
+        private readonly MainWindow _mainWindow;
+        public RegistrationForm(MainWindow mainWindow, AuthorizeForm authorizeForm, IUserRepository userRepository)
         {
-            _userRepository = new UserRepository("Data Source=LAPTOP-J6B0K8DE;Initial Catalog=WinForms;Persist Security Info=True;User ID=sa;Password=admin;TrustServerCertificate=True");
+            _userRepository = userRepository;
+            _mainWindow = mainWindow;
+            _authorizeForm = authorizeForm;
             InitializeComponent();
         }
 
@@ -36,11 +40,8 @@ namespace WinFormsApp4
 
             _userRepository.Create(new User() { Login = login, Password = password });
 
-            var _mainWindow = new MainWindow();
-
-            _mainWindow.Show();
             this.Hide();
-
+            _mainWindow.Show();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -51,8 +52,7 @@ namespace WinFormsApp4
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            var logForm = new AuthorizeForm();
-            logForm.Show();
+            _authorizeForm.Show();
         }
 
         private void label2_Click(object sender, EventArgs e)
