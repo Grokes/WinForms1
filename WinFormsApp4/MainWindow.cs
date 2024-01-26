@@ -7,49 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp4.Models;
+using WinFormsApp4.Repositories;
 
 namespace WinFormsApp4
 {
     public partial class MainWindow : Form
     {
-        static BindingList<Product> products1 = new BindingList<Product>()
-        {
-            new Product() {Id = 1, Name = "Apple"},
-            new Product() {Id = 2, Name = "Tomato"},
-            new Product() {Id = 3, Name = "Juice"}
-        };
-
-        static BindingList<Product> products2 = new BindingList<Product>()
-        {
-            new Product() {Id = 4, Name = "Potato"},
-            new Product() {Id = 5, Name = "Orange"},
-            new Product() {Id = 6, Name = "Meat"}
-        };
-
-        BindingList<Shop> shops = new BindingList<Shop>()
-        {
-            new Shop()
-            {
-                Id = 1,
-                Name="Diksi",
-                Products= products1,
-            },
-            new Shop()
-            {
-                Id = 2,
-                Name="Paterka",
-                Products= products2,
-            }
-        };
-
-
-
-        public MainWindow()
+        private readonly IShopRepository _shopRepository;
+        private List<Shop> shops;
+        public MainWindow(IShopRepository shopRepository)
         {
             InitializeComponent();
-            ShopsListBox.DataSource = shops;
+            _shopRepository = shopRepository;
+            shops = shopRepository.GetShops();
+            ShopsListBox.DataSource = shops;    
             ShopsListBox.DisplayMember = "Name";
-            ShopsListBox.ValueMember = "Id";
+            ShopsListBox.ValueMember = "ShopId";
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -59,12 +33,12 @@ namespace WinFormsApp4
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedShop = shops.Where(x => x.Id == ((Shop)ShopsListBox.SelectedItem).Id).FirstOrDefault();
+            var selectedShop = shops.Where(x => x.ShopId == ((Shop)ShopsListBox.SelectedItem).ShopId).FirstOrDefault();
             if (selectedShop != null)
             {
                 ProductsListBox.DataSource = selectedShop.Products;
                 ProductsListBox.DisplayMember = "Name";
-                ProductsListBox.ValueMember = "Id";
+                ProductsListBox.ValueMember = "ProductId";
             }
 
         }
@@ -78,7 +52,7 @@ namespace WinFormsApp4
         {
             var shopName = NameShopTextBox.Text;
             var shopId = shops.Count() + 1;
-            shops.Add(new Shop() { Name = shopName, Id = shopId, Products = new BindingList<Product>() });
+            shops.Add(new Shop() { Name = shopName, ShopId = shopId});
             NameShopTextBox.Text = "";
         }
 
@@ -86,23 +60,8 @@ namespace WinFormsApp4
         {
             var ProductName = NameProductTextBox.Text;
             var ProductId = shops.Sum(x => x.Products.Count()) + 1;
-            ((Shop)ShopsListBox.SelectedItem).Products.Add(new Product {Name = ProductName, Id = ProductId });
+            ((Shop)ShopsListBox.SelectedItem).Products.Add(new Product {Name = ProductName, ProductId = ProductId });
             NameProductTextBox.Text = "";
         }
-    }
-
-    public class Shop
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        public BindingList<Product> Products { get; set; }
-    }
-
-    public class Product
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
     }
 }

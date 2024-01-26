@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using Dapper;
+using WinFormsApp4.Models;
 
-namespace WinFormsApp4
+namespace WinFormsApp4.Repositories
 {
-    public class UserRepository: IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly string _connectionString;
         public static List<User> Users = new List<User>();

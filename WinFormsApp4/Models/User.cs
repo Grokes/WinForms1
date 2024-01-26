@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormsApp4
+namespace WinFormsApp4.Models
 {
     public class User
     {

@@ -1,3 +1,5 @@
+using WinFormsApp4.Repositories;
+
 namespace WinFormsApp4
 {
     public partial class AuthorizeForm : Form
@@ -5,10 +7,10 @@ namespace WinFormsApp4
         private readonly IUserRepository _userRepository;
         private readonly RegistrationForm _registrationForm;
         private readonly MainWindow _mainWindow;
-        public AuthorizeForm(MainWindow mainWindow, RegistrationForm registrationForm, IUserRepository userRepository)
+        public AuthorizeForm(MainWindow mainWindow, /*RegistrationForm registrationForm,*/ IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _registrationForm = registrationForm;
+            _registrationForm = new RegistrationForm(_mainWindow, this, _userRepository);
             _mainWindow = mainWindow;
             InitializeComponent();
         }

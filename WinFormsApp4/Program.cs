@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WinFormsApp4.Repositories;
 
 namespace WinFormsApp4
 {
@@ -31,6 +32,7 @@ namespace WinFormsApp4
         {
             var connectionString = "Data Source=LAPTOP-J6B0K8DE;Initial Catalog=WinForms;Persist Security Info=True;User ID=sa;Password=admin;TrustServerCertificate=True";
             services.AddTransient<IUserRepository, UserRepository>(provider => new UserRepository(connectionString));
+            services.AddTransient<IShopRepository, ShopRepository>(provider => new ShopRepository(connectionString));
             services.AddTransient<MainWindow>();
             services.AddTransient<RegistrationForm>();
             services.AddTransient<AuthorizeForm>();
