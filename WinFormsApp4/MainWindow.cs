@@ -83,7 +83,7 @@ namespace WinFormsApp4
                 _shopRepository.RemoveProduct(selectedProduct);
                 shops = _shopRepository.GetShops();
                 ShopsListBox.DataSource = shops;
-            }   
+            }
         }
 
         private void RemoveShopButton_Click(object sender, EventArgs e)
@@ -94,7 +94,12 @@ namespace WinFormsApp4
                 _shopRepository.Remove(selectedShop);
                 shops = _shopRepository.GetShops();
                 ShopsListBox.DataSource = shops;
-            } 
+            }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

@@ -36,6 +36,7 @@
             CreateProductButton = new Button();
             RemoveProductButton = new Button();
             RemoveShopButton = new Button();
+            ExitButton = new Button();
             SuspendLayout();
             // 
             // ShopsListBox
@@ -114,11 +115,22 @@
             RemoveShopButton.UseVisualStyleBackColor = true;
             RemoveShopButton.Click += RemoveShopButton_Click;
             // 
+            // ExitButton
+            // 
+            ExitButton.Location = new Point(760, 23);
+            ExitButton.Name = "ExitButton";
+            ExitButton.Size = new Size(94, 29);
+            ExitButton.TabIndex = 8;
+            ExitButton.Text = "Exit";
+            ExitButton.UseVisualStyleBackColor = true;
+            ExitButton.Click += ExitButton_Click;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 605);
+            Controls.Add(ExitButton);
             Controls.Add(RemoveShopButton);
             Controls.Add(RemoveProductButton);
             Controls.Add(NameProductTextBox);
@@ -144,5 +156,6 @@
         private Button CreateProductButton;
         private Button RemoveProductButton;
         private Button RemoveShopButton;
+        private Button ExitButton;
     }
 }

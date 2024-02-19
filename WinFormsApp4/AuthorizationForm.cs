@@ -10,8 +10,8 @@ namespace WinFormsApp4
         public AuthorizeForm(MainWindow mainWindow, /*RegistrationForm registrationForm,*/ IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _registrationForm = new RegistrationForm(_mainWindow, this, _userRepository);
             _mainWindow = mainWindow;
+            _registrationForm = new RegistrationForm(_mainWindow, this, _userRepository);
             InitializeComponent();
         }
 
