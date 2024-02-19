@@ -28,8 +28,7 @@ namespace WinFormsApp4.Repositories
                                     @{nameof(User.Login)},
                                     @{nameof(User.Password)}); 
                                     SELECT CAST(SCOPE_IDENTITY() as int)";
-                int? userId = db.Query<int>(sqlQuery, user).FirstOrDefault();
-                user.Id = userId.Value;
+                int? userId = db.Execute(sqlQuery, user);
             }
         }
 

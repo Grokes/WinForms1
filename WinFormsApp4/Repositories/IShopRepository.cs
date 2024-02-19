@@ -11,5 +11,6 @@ namespace WinFormsApp4.Repositories
     {
         public List<Shop> GetShops();
         public void Create(Shop shop);
+        public void CreateProduct(Shop shop, Product product);
     }
 }

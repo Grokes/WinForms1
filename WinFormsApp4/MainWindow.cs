@@ -20,7 +20,7 @@ namespace WinFormsApp4
         {
             InitializeComponent();
             _shopRepository = shopRepository;
-            shops = shopRepository.GetShops();
+            shops = _shopRepository.GetShops();
             ShopsListBox.DataSource = shops;    
             ShopsListBox.DisplayMember = "Name";
             ShopsListBox.ValueMember = "ShopId";
@@ -34,11 +34,15 @@ namespace WinFormsApp4
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedShop = shops.Where(x => x.ShopId == ((Shop)ShopsListBox.SelectedItem).ShopId).FirstOrDefault();
-            if (selectedShop != null)
+            if (selectedShop != null && selectedShop.Products[0] != null)
             {
                 ProductsListBox.DataSource = selectedShop.Products;
                 ProductsListBox.DisplayMember = "Name";
                 ProductsListBox.ValueMember = "ProductId";
+            }
+            else 
+            {
+                ProductsListBox.DataSource = new List<Product>();
             }
 
         }
@@ -51,17 +55,23 @@ namespace WinFormsApp4
         private void CreateShopButton_Click(object sender, EventArgs e)
         {
             var shopName = NameShopTextBox.Text;
-            var shopId = shops.Count() + 1;
-            shops.Add(new Shop() { Name = shopName, ShopId = shopId});
+            _shopRepository.Create(new Shop { Name = shopName });
             NameShopTextBox.Text = "";
+            shops = _shopRepository.GetShops();
+            ShopsListBox.DataSource = shops;
         }
 
         private void CreateProductButton_Click(object sender, EventArgs e)
         {
             var ProductName = NameProductTextBox.Text;
-            var ProductId = shops.Sum(x => x.Products.Count()) + 1;
-            ((Shop)ShopsListBox.SelectedItem).Products.Add(new Product {Name = ProductName, ProductId = ProductId });
-            NameProductTextBox.Text = "";
+            var selectedShop = shops.Where(x => x.ShopId == ((Shop)ShopsListBox.SelectedItem).ShopId).FirstOrDefault();
+            if (selectedShop != null)
+            {
+                _shopRepository.CreateProduct(selectedShop, new Product { Name = ProductName });
+                shops = _shopRepository.GetShops();
+                ShopsListBox.DataSource = shops;
+                NameProductTextBox.Text = "";
+            }   
         }
     }
 }
