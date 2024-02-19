@@ -70,5 +70,15 @@ namespace WinFormsApp4.Repositories
                 return result;
             }
         }
+
+        public void RemoveProduct(Shop shop, Product product)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                string sqlQuery = $@"DELETE FROM [dbo].[ShopProducts] 
+                                    WHERE ProductId = @{nameof(Product.ProductId)} AND ShopId = @{nameof(Shop.ShopId)};";
+                db.Execute(sqlQuery, new { product.ProductId, shop.ShopId });
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace WinFormsApp4
             InitializeComponent();
             _shopRepository = shopRepository;
             shops = _shopRepository.GetShops();
-            ShopsListBox.DataSource = shops;    
+            ShopsListBox.DataSource = shops;
             ShopsListBox.DisplayMember = "Name";
             ShopsListBox.ValueMember = "ShopId";
         }
@@ -40,7 +40,7 @@ namespace WinFormsApp4
                 ProductsListBox.DisplayMember = "Name";
                 ProductsListBox.ValueMember = "ProductId";
             }
-            else 
+            else
             {
                 ProductsListBox.DataSource = new List<Product>();
             }
@@ -71,7 +71,16 @@ namespace WinFormsApp4
                 shops = _shopRepository.GetShops();
                 ShopsListBox.DataSource = shops;
                 NameProductTextBox.Text = "";
-            }   
+            }
+        }
+
+        private void RemoveProductButton_Click(object sender, EventArgs e)
+        {
+            var selectedShop = shops.Where(x => x.ShopId == ((Shop)ShopsListBox.SelectedItem).ShopId).FirstOrDefault();
+            var selectedProduct = selectedShop.Products.Where(x => x.ProductId == ((Product)ProductsListBox.SelectedItem).ProductId).FirstOrDefault();
+            _shopRepository.RemoveProduct(selectedShop, selectedProduct);
+            shops = _shopRepository.GetShops();
+            ShopsListBox.DataSource = shops;
         }
     }
 }

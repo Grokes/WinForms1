@@ -34,6 +34,8 @@
             NameShopTextBox = new TextBox();
             NameProductTextBox = new TextBox();
             CreateProductButton = new Button();
+            RemoveProductButton = new Button();
+            RemoveShopButton = new Button();
             SuspendLayout();
             // 
             // ShopsListBox
@@ -92,11 +94,32 @@
             CreateProductButton.UseVisualStyleBackColor = true;
             CreateProductButton.Click += CreateProductButton_Click;
             // 
+            // RemoveProductButton
+            // 
+            RemoveProductButton.Location = new Point(529, 16);
+            RemoveProductButton.Name = "RemoveProductButton";
+            RemoveProductButton.Size = new Size(103, 43);
+            RemoveProductButton.TabIndex = 6;
+            RemoveProductButton.Text = "Remove";
+            RemoveProductButton.UseVisualStyleBackColor = true;
+            RemoveProductButton.Click += RemoveProductButton_Click;
+            // 
+            // RemoveShopButton
+            // 
+            RemoveShopButton.Location = new Point(225, 16);
+            RemoveShopButton.Name = "RemoveShopButton";
+            RemoveShopButton.Size = new Size(103, 43);
+            RemoveShopButton.TabIndex = 7;
+            RemoveShopButton.Text = "Remove";
+            RemoveShopButton.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(914, 605);
+            Controls.Add(RemoveShopButton);
+            Controls.Add(RemoveProductButton);
             Controls.Add(NameProductTextBox);
             Controls.Add(CreateProductButton);
             Controls.Add(NameShopTextBox);
@@ -118,5 +141,7 @@
         private TextBox NameShopTextBox;
         private TextBox NameProductTextBox;
         private Button CreateProductButton;
+        private Button RemoveProductButton;
+        private Button RemoveShopButton;
     }
 }
