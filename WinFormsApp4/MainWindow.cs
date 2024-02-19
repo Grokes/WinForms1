@@ -77,10 +77,24 @@ namespace WinFormsApp4
         private void RemoveProductButton_Click(object sender, EventArgs e)
         {
             var selectedShop = shops.Where(x => x.ShopId == ((Shop)ShopsListBox.SelectedItem).ShopId).FirstOrDefault();
-            var selectedProduct = selectedShop.Products.Where(x => x.ProductId == ((Product)ProductsListBox.SelectedItem).ProductId).FirstOrDefault();
-            _shopRepository.RemoveProduct(selectedShop, selectedProduct);
-            shops = _shopRepository.GetShops();
-            ShopsListBox.DataSource = shops;
+            var selectedProduct = selectedShop?.Products.Where(x => x.ProductId == ((Product)ProductsListBox.SelectedItem).ProductId).FirstOrDefault();
+            if (selectedShop != null && selectedProduct != null)
+            {
+                _shopRepository.RemoveProduct(selectedProduct);
+                shops = _shopRepository.GetShops();
+                ShopsListBox.DataSource = shops;
+            }   
+        }
+
+        private void RemoveShopButton_Click(object sender, EventArgs e)
+        {
+            var selectedShop = shops.Where(x => x.ShopId == ((Shop)ShopsListBox.SelectedItem).ShopId).FirstOrDefault();
+            if (selectedShop != null)
+            {
+                _shopRepository.Remove(selectedShop);
+                shops = _shopRepository.GetShops();
+                ShopsListBox.DataSource = shops;
+            } 
         }
     }
 }

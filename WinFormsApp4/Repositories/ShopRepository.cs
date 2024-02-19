@@ -71,13 +71,27 @@ namespace WinFormsApp4.Repositories
             }
         }
 
-        public void RemoveProduct(Shop shop, Product product)
+        public void RemoveProduct(Product product)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string sqlQuery = $@"DELETE FROM [dbo].[ShopProducts] 
-                                    WHERE ProductId = @{nameof(Product.ProductId)} AND ShopId = @{nameof(Shop.ShopId)};";
-                db.Execute(sqlQuery, new { product.ProductId, shop.ShopId });
+                                    WHERE ProductId = @{nameof(Product.ProductId)};
+                                    DELETE FROM [dbo].[Products] 
+                                    WHERE ProductId = @{nameof(Product.ProductId)};";
+                db.Execute(sqlQuery, product);
+            }
+        }
+
+        public void Remove(Shop shop)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                string sqlQuery = $@"DELETE FROM [dbo].[ShopProducts] 
+                                    WHERE ShopId = @{nameof(Shop.ShopId)};
+                                    DELETE FROM [dbo].[Shops] 
+                                    WHERE ShopId = @{nameof(Shop.ShopId)};";
+                db.Execute(sqlQuery, shop);
             }
         }
     }

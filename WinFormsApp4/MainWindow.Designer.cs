@@ -112,6 +112,7 @@
             RemoveShopButton.TabIndex = 7;
             RemoveShopButton.Text = "Remove";
             RemoveShopButton.UseVisualStyleBackColor = true;
+            RemoveShopButton.Click += RemoveShopButton_Click;
             // 
             // MainWindow
             // 
